@@ -1,0 +1,40 @@
+{% extends 'base.html'%}
+
+{% load staticfiles %}
+
+{% block body %}
+<div class="col-md-8 col-md-offset-2 col-sm-12 maincontent">
+    <div class="detail_book_display">
+        <img class="detail_book_image_display" src="{% static 'base/img/'%}{{book.title}}.jpg">
+        <div class="detail_book_title_display">{{ book.title }}</div>
+        <div class="detail_book_author_display">{{ book.Auther }}</div>
+        <div class="detail_book_discription_display">{{ book.Discription }}</div>
+        <div class="detail_book_review_title_display">Review{% if reviews %}({{reviews.count }}){%endif%}</div>
+        <div class="detail_book_review_display">
+            <div class="col-md-8 col-md-offset-2" style="text-align:center">
+                {% if form %}
+                <h4> Have you read this book. please provide us your review </h4>
+                <form class="form-inline"  action="{% url 'book_detailes' book.pk %}" method = "POST">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <input type="submit" value="Submit">
+                </form>
+                {% endif%}
+                {% for review in reviews %}
+                <div>
+                    {{review.text}}
+                </div>
+                <div style="font-weight:bold">
+                    ~{{review.user.username}} on {{review.Publish_date}}
+                </div>
+                {%empty%}
+                <div style="margin-top:20px">
+                    Ther is no review for this Book.
+                </div>
+                {%endfor%}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

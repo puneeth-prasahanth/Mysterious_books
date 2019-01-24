@@ -1,0 +1,14 @@
+{% extends 'base.html'%}
+
+{% load staticfiles %}
+
+{% block body %}
+<div class="col-md-8 col-md-offset-2 col-sm-12 maincontent">
+    <div style="text-align:center; text-decoration: underline;color:blue;">
+        <h3>Your Payment Status</h3>
+        <div style="text-align:center;font-family:italic;">
+            {{message}}
+        </div>
+    </div>
+</div>
+{% endblock %}

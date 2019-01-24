@@ -1,0 +1,58 @@
+{% extends 'base.html'%}
+
+{% load staticfiles %}
+
+{% block body %}
+<div class="col-md-8 col-md-offset-2 col-sm-12 maincontent">
+    <div style="text-align:center; text-decoration: underline;color:blue;">
+        <h3>Conform Your Order</h3></div>
+            <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>Item</th>
+                <th>Quantity</th>
+                <th >Prize</th>
+            </tr>
+            </thead>
+            {% for item in cart %}
+                {% if item.quantity != 0 %}
+                <tbody>
+                 <tr>
+                    <td class="col-md-2">
+                        <a href="{% url 'book_detailes' item.book.id %}">
+                      <div class="storefront_books_display">
+                       <img src="{% static 'base/img/'%}{{item.book.title}}.jpg" class="detail_book_image_display"/>
+                        <span class="title">{{item.book.title}}</span> by {{item.book.Auther}} {{item.book_id}}
+                      </div>
+                      </a>
+                    </td>
+                    <td class="col-md-3">
+                        <span class="cart-quantity ">{{item.quantity}} x &<span class="cart-value">{{item.book.Prize}} </span></span>
+                        Quantity:<a href="{% url 'add_to_cart' item.book.id %}">[+]</a><a href="{% url 'remove_from_cart' item.book.id %}">[-]</a>
+                     </td>
+                    <td class="col-md-2" >
+                        {{item.book.Prize}}
+                    </td>
+                 </tr>
+                </tbody>
+        {%endif%}
+            {% empty%}
+            <div>
+                <tbody>
+                 <tr>
+                    <td>
+                There is no items in cart
+                    </td></tr>
+                </tbody>
+            </div>
+    {%endfor%}
+
+        <div class="cart_total inset">
+            <h4 class="col-md-9 col-md-offset-9 ">
+                Total: $<span class="cart_value ">{{total}}</span>
+            </h4>
+        </div>
+    </table>
+</div>
+
+{% endblock %}

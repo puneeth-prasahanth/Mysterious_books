@@ -1,0 +1,6 @@
+Hello {{username}}, Thanks for your Caluable review!
+Here is your Discount Code {{code}}, Using this code you can avail {{discount}}% of discount on your next purchase.
+
+See you again!
+
+Mysterious Books.

@@ -1,0 +1,8 @@
+Greetings,,,
+
+You has just at the last stage of your activation at {{site.name}}, Please click on the below url.
+
+http//{{ site.domain }}{% url 'registration_activate' activation_key %}
+
+NOTE: This Link is valied for {{ expiration_days }}. If its wasn't you signed up for this account. There is nothing to panic!
+There might be a email issue if you feel like intrested on us please do visit our site.
